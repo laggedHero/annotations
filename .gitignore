@@ -1,0 +1,6 @@
+
+.gradle/*
+.idea/*
+annotations.iml
+gradle*
+local.properties
