@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'maven'
 
 archivesBaseName = 'laggedHero-annotations'
 
@@ -10,30 +11,28 @@ jar {
     from sourceSets.main.output
 }
 
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            pom.project {
-//                name 'LaggedHero Annotations'
-//                description "Some random annotations."
-//                url 'http://laggedhero.net'
-//                inceptionYear '2015'
-//                licenses {
-//                    license {
-//                        name 'The Apache Software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                        distribution 'repo'
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        name 'LaggedHero'
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+task writePom << {
+    pom {
+        project {
+            name 'LaggedHero Annotations'
+            description "Some random annotations."
+            url 'https://github.com/laggedHero/annotations'
+            inceptionYear '2015'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            developers {
+                developer {
+                    name 'LaggedHero'
+                }
+            }
+        }
+    }.writeTo("$buildDir/pom.xml")
+}
 
 // configuration for the javadoc to include all source sets.
 javadoc {
